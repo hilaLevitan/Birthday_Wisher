@@ -1,7 +1,7 @@
 # to run this code, create a file named private_var and declare there:
-# secret_key
-# email
-# app password for your email
+# SECREATE_KEY 
+# EMAIL
+# app PASSWORD for your email
 # Happy Birthday 😊
 from email.message import EmailMessage
 from flask import Flask, render_template, redirect, request, url_for, flash,abort
