@@ -1,0 +1,53 @@
+{% include "header.html" %}
+
+<!-- Page Header -->
+<header
+  class="masthead"
+  style="
+    background-image: url('{{ url_for('static', filename='img/wishes.jpg')}}');
+  "
+>
+  <div class="overlay"></div>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto">
+        <div class="site-heading">
+          <h1>Your Wishes</h1>
+          <!-- <span class="subheading">A collection of random musings.</span> -->
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- Main Content -->
+<div class="container">
+  <div class="row">
+    <div class="col-lg-8 col-md-10 mx-auto">
+      {% for wish in wishes %}
+      <div class="post-preview">
+        <a href="{{ url_for('show_wish', wish_id=wish.id) }}">
+          <h2 class="post-title">Birthday to {{wish.name}}</h2>
+          <h3 class="post-subtitle">on {{wish.birthDate}}</h3>
+        </a>
+        <p class="post-meta">
+          wished by
+          <a href="#"> {{wish.wisher.name}}</a>
+          {{wish.email}}
+          <a href="{{url_for('delete_wish', wish_id=wish.id) }}">✘</a>
+        </p>
+      </div>
+      <hr />
+      {% endfor %}
+      <!-- New Post -->
+      <div class="clearfix">
+        <a class="btn btn-primary float-right" href="{{url_for('make_wish')}}"
+          >Create New Wish</a
+        >
+      </div>
+    </div>
+  </div>
+</div>
+<hr />
+
+{% include "footer.html" %}

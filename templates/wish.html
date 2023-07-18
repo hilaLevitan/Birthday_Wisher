@@ -1,0 +1,52 @@
+{% include "header.html" %} {% import "bootstrap/wtf.html" as wtf %}
+<!-- Page Header -->
+<header
+  class="masthead"
+  style="
+background-image: url('{{ url_for('static', filename='img/birthday.png')}}');
+"
+>
+  <div class="overlay"></div>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto">
+        <div class="post-heading">
+          <h1>{{wish.name}}</h1>
+          <h2 class="subheading">on {{wish.birthDate}}</h2>
+          <span class="meta"
+            >Wished by by
+            <a href="#">{{wish.wisher.name}}</a>
+            to email: {{wish.email}}</span
+          >
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- Post Content -->
+<article>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto">
+        {{ wish.wish|safe }}
+        <hr />
+        <div class="clearfix">
+          <a
+            class="btn btn-primary float-right"
+            href="{{url_for('edit_wish', wish_id=wish.id)}}"
+            >Edit Wish</a
+          >
+        </div>
+
+        <!--           Comments Area -->
+        {{ ckeditor.load() }} {{ ckeditor.config(name='wish') }}
+
+        <div class="col-lg-8 col-md-10 mx-auto comment"></div>
+      </div>
+    </div>
+  </div>
+</article>
+
+<hr />
+{% include "footer.html" %}
